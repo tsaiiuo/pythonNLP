@@ -21,3 +21,8 @@ n1=input("Enter the first number: ")
 n2=input("Enter the second number: ")
 sum=int(n1)+int(n2)
 print(f"n1 +n2={sum}")
+y=0
+for i in range(1,6):
+    x=input("Enter a number")
+    y+=int(x)
+print(f"the result={y}")
