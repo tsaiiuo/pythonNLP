@@ -26,6 +26,20 @@ class Textprocess:
     def doc_clean(string):
         words=re.sub(r"[\W_]",' ', string)
         return words
+    def doc_count(words):
+        counts=dict()
+        for word in words:
+            if word in counts:
+                counts[word]+=1
+            else:
+                counts[word]=1
+            return counts
+    def find_name(string):
+        matches=re.finditer('[A-Z][a-z]+\s', string)
+        return matches
+    
+        
+        
 
 
     
