@@ -48,42 +48,131 @@ mybutton = tk.Button(root, text='Submit', command=button_event)
 mybutton.grid(row=1, column=1)
 
 root.mainloop()
-'''
+
 import tkinter as tk
-#from tkinter import *
-from tkinter import filedialog
+from tkinter import *
+from tkinter import filedialog  
+from methodclass import Text_process as T
+
+
+
+def word_fre_label(fict):
+    dic_text = ""
+    for i in fict :
+        dic_text = dic_text +  i +" : "+ str(fict[i]) + "\n"
+    return dic_text
+
+
+def process():
+    global content_label, dict_label, a
+    content = textarea.get('0.0','end')
+    word_dic = T.bag_word(T.doc_split_word(content))
+    del word_dic['']
+    print(word_dic)
+    dict_label['text'] =  word_fre_label(word_dic)
+    path.grid(column = 0, row = 2  , sticky=tk.W)
+    read_file_bt.grid(column = 0, row = 2  , sticky=tk.E)
+    process_bt.grid(column = 0, row = 3  , sticky=tk.E)
+ 
+    return 
+    
 
 def openFile():
     tf = filedialog.askopenfilename(
-        #change to your own directory below to have a correct path
-        initialdir="/Users/huannn/Documents/GitHub/pythonNLP/file_list.txt", 
+        initialdir="/Users/fennieliang/Documnets/GitHub/python/lesson03", 
         title="Open Text file", 
         filetypes=(("Text Files", "*.txt"),)
         )
-    path.insert(tk.END, tf)
+    path.insert(END, tf)
     tf = open(tf)  # or tf = open(tf, 'r')
     data = tf.read()
-    txtarea.insert(tk.END, data)
+    textarea.insert(END, data)
     tf.close()
 
-ws = tk.Tk()
-ws.title("My Python Class")
-ws.geometry("500x500")
-ws['bg']='#5CF9F2'
+# Create a GUI app
+wd = tk.Tk()
 
-txtarea = tk.Text(ws, width=100, height=20)
-txtarea.pack(pady=20)
+# Give a title to your app
+wd.title("My Python Class")
+wd.geometry("570x600") 
 
-path = tk.Entry(ws)
-path.pack(side="left", expand="yes", fill="x")
+textarea = tk.Text(wd)
+textarea.grid(column = 0, row = 0, sticky=tk.W)
 
-
-
-tk.Button(
-    ws, height=1, width=10,
-    text="Open File", 
-    command=openFile
-    ).pack(side="right",  expand="yes", fill="x")
+dict_label = tk.Label(wd, justify = 'left' )
+dict_label.grid(column = 0, row = 1, sticky=tk.W+tk.N)
 
 
-ws.mainloop()
+path = tk.Entry(wd)
+path.grid(column = 0, row = 2, sticky=tk.W)
+
+
+read_file_bt = tk.Button(wd, height=1, width=10, text="Read File", command=openFile)
+read_file_bt.grid(column = 0, row = 2, sticky=tk.E)
+
+
+process_bt = tk.Button(wd, text = "Process", command=process)
+process_bt.grid(column = 0, row = 3, sticky=tk.E)
+ 
+wd.mainloop()
+'''
+import webbrowser
+# open an HTML file on my own (Windows) computer
+
+from methodbox import FileOperate as fo
+
+name = 'example.html'
+path = '/Users/huannn/Documents/GitHub/pythonNLP'
+string = """<Content-Type: text/html>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HTML Tutorial</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Free Web tutorials">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Fennie Liang">
+</head>
+<body>
+  <h1 style="color:red">Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3 style="color:blue">Heading h3</h3>
+  <h4>Heading h4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+  <p>
+    Our first <b>HTML</b>, <mark>lesson</mark>, taught by Dr. <a href="https://sites.google.com/site/example/"><ins>Fennie Liang</ins></a>.
+  </p>
+  <p> 
+    <del>cross line</del>
+  </p>
+  <p>
+    This <br> is    a paragraph <br> with <br> line     breaks <!-- 這裹的註解文字不會出現在網頁中 -->
+  </p>
+  <p style="color:green">
+    Add green colour to this paragraph.
+  </p>
+  <p>bullet points:</p>
+  <ul>
+    <li>Lesson 1</li>
+    <li>Lesson 2</li>
+    <li>Lesson 3</li>
+  </ul>
+<p>Auto numbered list:</p>
+  <ol>
+    <li>Taiwan </li>
+    <li>America </li>
+    <li>United Kingdom </li>
+    <li>France</li>
+  </ol>
+</body>
+</html>
+"""
+fo.create(path, name, string)
+
+# open an HTML file on my own (Windows) computer, change the path to suit yours
+url = "file:///Users/huannn/Documents/GitHub/pythonNLP/example.html"
+
+webbrowser.open_new(url)
+
