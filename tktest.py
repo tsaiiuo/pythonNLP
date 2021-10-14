@@ -135,12 +135,13 @@ string = """<Content-Type: text/html>
   <meta name="author" content="Fennie Liang">
 </head>
 <body>
-  <h1 style="color:red">Heading 1</h1>
+  <h1 style="color:red">Hello World</h1>
   <h2>Heading 2</h2>
   <h3 style="color:blue">Heading h3</h3>
   <h4>Heading h4</h4>
   <h5>Heading 5</h5>
   <h6>Heading 6</h6>
+  <h7>Heading 7</h7>
   <p>
     Our first <b>HTML</b>, <mark>lesson</mark>, taught by Dr. <a href="https://sites.google.com/site/example/"><ins>Fennie Liang</ins></a>.
   </p>
