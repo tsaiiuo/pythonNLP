@@ -48,6 +48,7 @@ mybutton = tk.Button(root, text='Submit', command=button_event)
 mybutton.grid(row=1, column=1)
 
 root.mainloop()
+'''
 
 import tkinter as tk
 from tkinter import *
@@ -176,4 +177,5 @@ fo.create(path, name, string)
 url = "file:///Users/huannn/Documents/GitHub/pythonNLP/example.html"
 
 webbrowser.open_new(url)
+'''
 
